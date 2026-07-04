@@ -1,12 +1,12 @@
 /*
-Eudaimonia Grove
+Flourishing Garden
 A bio-inspired Obsidian theme for deep work, research, journaling, coding,
 and creative knowledge gardens.
 */
 
 /* @settings
-name: Eudaimonia Grove
-id: eudaimonia-grove
+name: Flourishing Garden
+id: flourishing-garden
 settings:
   -
     id: eg-accent-mode
@@ -126,6 +126,9 @@ body {
   --eg-highlight-sap: var(--eg-moss);
   --eg-highlight-vein: var(--text-accent);
   --eg-highlight-ground: rgba(95, 127, 90, 0.22);
+  --eg-field-dot: color-mix(in srgb, var(--text-muted) 12%, transparent);
+  --eg-field-size: 24px;
+  --eg-specimen-surface: color-mix(in srgb, var(--background-secondary) 62%, transparent);
   --eg-note-padding: 32px;
   --eg-nav-item-padding: 4px 9px;
   --eg-table-padding: 0.55em 0.75em;
@@ -407,6 +410,15 @@ samp,
   background-color: var(--background-primary);
 }
 
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-scroller,
+.canvas-wrapper,
+.workspace-leaf-content[data-type="graph"] .view-content {
+  background-image: radial-gradient(var(--eg-field-dot) 0.8px, transparent 0.8px);
+  background-position: center top;
+  background-size: var(--eg-field-size) var(--eg-field-size);
+}
+
 .workspace-ribbon,
 .workspace-drawer,
 .workspace-tabs.mod-sidedock,
@@ -668,9 +680,7 @@ a.tag:hover,
     );
   box-shadow:
     inset 0 -1px 0 color-mix(in srgb, var(--eg-highlight-vein) 44%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, var(--eg-highlight-sap) 34%, transparent),
-    0 0 0 3px color-mix(in srgb, var(--eg-highlight-sap) 11%, transparent),
-    0 0 16px color-mix(in srgb, var(--eg-highlight-sap) 10%, transparent);
+    inset 0 0 0 1px color-mix(in srgb, var(--eg-highlight-sap) 24%, transparent);
   color: var(--text-normal);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
@@ -872,13 +882,18 @@ input[type="checkbox"]:checked {
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid var(--background-modifier-border);
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 6%, transparent);
 }
 
 .markdown-rendered th {
   background-color: var(--background-secondary);
+  color: var(--text-normal);
+  font-family: var(--font-monospace-theme);
+  font-size: 0.82em;
   font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .markdown-rendered td,
@@ -891,17 +906,39 @@ input[type="checkbox"]:checked {
   background-color: color-mix(in srgb, var(--background-secondary) 42%, transparent);
 }
 
+.markdown-rendered tbody tr:hover {
+  background-color: color-mix(in srgb, var(--interactive-accent) 9%, transparent);
+}
+
 .metadata-container {
   padding-block: 0.5em 1em;
 }
 
 .metadata-property {
   gap: var(--metadata-gap);
-  transition: background-color 140ms ease;
+  border: 1px solid transparent;
+  background-color: color-mix(in srgb, var(--background-primary) 72%, transparent);
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
 }
 
 .metadata-property:hover {
+  border-color: color-mix(in srgb, var(--interactive-accent) 22%, var(--background-modifier-border));
   background-color: var(--background-modifier-hover);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 8%, transparent);
+}
+
+.metadata-property-key,
+.metadata-property-key-input,
+.status-bar-item {
+  font-family: var(--font-monospace-theme);
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.metadata-property-key,
+.metadata-property-key-input {
+  color: var(--interactive-accent);
 }
 
 .frontmatter-container .tag:not(.token) {
@@ -1017,7 +1054,13 @@ select:focus-visible,
   border-radius: 18px;
   border: 1px solid var(--background-modifier-border);
   box-shadow: var(--eg-panel-shadow);
-  background-color: var(--background-primary);
+  background:
+    radial-gradient(
+      ellipse at 12% 8%,
+      color-mix(in srgb, var(--interactive-accent) 8%, transparent),
+      transparent 48%
+    ),
+    var(--background-primary);
 }
 
 .canvas-node.is-focused .canvas-node-container {
@@ -1049,8 +1092,24 @@ select:focus-visible,
   border-radius: var(--radius-m);
 }
 
+.markdown-embed,
+.file-embed,
+.internal-embed,
+.search-result-file-match {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background-color: var(--eg-specimen-surface);
+}
+
+.markdown-embed,
+.file-embed,
+.internal-embed {
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--interactive-accent) 48%, transparent);
+}
+
 .search-result-file-match:hover,
 .search-result-file-title:hover {
+  border-color: color-mix(in srgb, var(--interactive-accent) 28%, var(--background-modifier-border));
   background-color: var(--background-modifier-hover);
 }
 
