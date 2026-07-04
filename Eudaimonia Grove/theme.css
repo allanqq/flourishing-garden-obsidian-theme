@@ -119,6 +119,10 @@ body {
 
   --eg-panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   --eg-focus-ring: color-mix(in srgb, var(--interactive-accent) 58%, transparent);
+  --eg-glow-ring: inset 0 0 0 1.5px var(--interactive-accent);
+  --eg-glow-halo: 0 0 0 3px color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  --eg-glow-lift: 0 8px 22px color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+  --eg-glow-soft: 0 0 18px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
   --eg-note-padding: 32px;
   --eg-nav-item-padding: 4px 9px;
   --eg-table-padding: 0.55em 0.75em;
@@ -425,7 +429,63 @@ button,
 
 .view-header-title {
   color: var(--text-muted);
-  font-weight: 650;
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  max-width: 100%;
+  padding: 2px 10px;
+  border: 1px solid color-mix(in srgb, var(--interactive-accent) 20%, var(--background-modifier-border));
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--interactive-accent) 12%, transparent),
+      color-mix(in srgb, var(--background-primary) 72%, transparent)
+    );
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 8%, transparent);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease, color 140ms ease;
+}
+
+.workspace-leaf.mod-active .view-header-title,
+.view-header-title:hover {
+  border-color: color-mix(in srgb, var(--interactive-accent) 44%, var(--background-modifier-border));
+  box-shadow: var(--eg-glow-ring), var(--eg-glow-halo);
+  color: var(--text-normal);
+}
+
+.inline-title {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin-block: 0.25em 0.75em;
+  padding: 0.08em 0.18em 0.22em 0;
+  color: var(--h1-color);
+  font-family: var(--font-interface-theme);
+  font-size: var(--h1-size);
+  font-weight: 780;
+  letter-spacing: 0;
+  line-height: 1.08;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+}
+
+.inline-title::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--interactive-accent) 72%, transparent),
+      color-mix(in srgb, var(--text-accent) 34%, transparent),
+      transparent
+    );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--interactive-accent) 18%, transparent);
 }
 
 .titlebar,
@@ -462,9 +522,11 @@ button,
 
 .nav-file-title.is-active,
 .tree-item-self.is-active {
-  box-shadow:
-    inset 0 0 0 1.5px var(--interactive-accent),
-    0 0 0 3px color-mix(in srgb, var(--interactive-accent) 16%, transparent);
+  box-shadow: var(--eg-glow-ring), var(--eg-glow-halo);
+}
+
+.vertical-tab-nav-item.is-active {
+  box-shadow: var(--eg-glow-ring);
 }
 
 .workspace-tab-header {
@@ -480,7 +542,10 @@ button,
 
 .workspace-tab-header.is-active {
   background-color: var(--background-primary);
-  box-shadow: inset 0 2px 0 var(--interactive-accent);
+  box-shadow:
+    inset 0 0 0 1.5px var(--interactive-accent),
+    inset 0 2px 0 var(--interactive-accent),
+    0 0 0 3px color-mix(in srgb, var(--interactive-accent) 12%, transparent);
   color: var(--text-normal);
 }
 
@@ -570,6 +635,7 @@ a.tag,
 a.tag:hover,
 .cm-hashtag:hover {
   background-color: var(--background-modifier-active-hover);
+  box-shadow: var(--eg-glow-halo);
   color: var(--text-accent-hover);
 }
 
@@ -577,9 +643,13 @@ a.tag:hover,
 .cm-highlight {
   border-radius: 5px;
   background-color: var(--background-modifier-selected);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--interactive-accent) 42%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--interactive-accent) 10%, transparent);
   color: var(--text-normal);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  padding: 0 0.08em;
 }
 
 .markdown-rendered blockquote {
@@ -609,6 +679,12 @@ a.tag:hover,
   border: 1px solid var(--background-modifier-border);
   background-color: var(--code-background);
   box-shadow: var(--eg-code-shadow, inset 0 1px 0 color-mix(in srgb, white 10%, transparent));
+}
+
+.markdown-rendered pre:hover,
+.cm-s-obsidian .HyperMD-codeblock:hover {
+  border-color: color-mix(in srgb, var(--interactive-accent) 46%, var(--background-modifier-border));
+  box-shadow: var(--eg-code-shadow, inset 0 1px 0 color-mix(in srgb, white 10%, transparent)), var(--eg-glow-soft);
 }
 
 .markdown-rendered pre {
@@ -667,6 +743,14 @@ a.tag:hover,
   border-left-width: 4px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   background-color: color-mix(in srgb, rgb(var(--callout-color)) 9%, var(--background-primary));
+  transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.callout:hover {
+  border-color: color-mix(in srgb, rgb(var(--callout-color)) 42%, var(--background-modifier-border));
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 0 0 3px color-mix(in srgb, rgb(var(--callout-color)) 12%, transparent);
 }
 
 .callout-title {
@@ -749,6 +833,7 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   background-color: var(--interactive-accent);
   border-color: var(--interactive-accent);
+  box-shadow: var(--eg-glow-halo);
 }
 
 .markdown-rendered .task-list-item.is-checked,
@@ -817,6 +902,7 @@ input[type="checkbox"]:checked {
 .suggestion-item.is-selected,
 .menu-item:hover {
   background-color: var(--background-modifier-selected);
+  box-shadow: var(--eg-glow-ring), var(--eg-glow-halo);
   color: var(--text-normal);
 }
 
@@ -837,11 +923,13 @@ button:hover,
 
 button.mod-cta {
   background-color: var(--interactive-accent);
+  box-shadow: var(--eg-glow-halo);
   color: var(--text-on-accent);
 }
 
 button.mod-cta:hover {
   background-color: var(--interactive-accent-hover);
+  box-shadow: var(--eg-glow-halo), var(--eg-glow-lift);
 }
 
 button.mod-warning {
@@ -908,8 +996,8 @@ select:focus-visible,
 }
 
 .canvas-node.is-focused .canvas-node-container {
-  outline: 2px solid color-mix(in srgb, var(--interactive-accent) 60%, transparent);
-  outline-offset: 2px;
+  outline: 0;
+  box-shadow: var(--eg-panel-shadow), var(--eg-glow-ring), var(--eg-glow-halo), var(--eg-glow-soft);
 }
 
 .canvas-node-label {
