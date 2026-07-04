@@ -460,8 +460,11 @@ button,
   font-weight: 650;
 }
 
-.nav-file-title.is-active {
-  box-shadow: inset 3px 0 0 var(--interactive-accent);
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  box-shadow:
+    inset 0 0 0 1.5px var(--interactive-accent),
+    0 0 0 3px color-mix(in srgb, var(--interactive-accent) 16%, transparent);
 }
 
 .workspace-tab-header {
