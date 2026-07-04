@@ -1,6 +1,6 @@
 # Flourishing Garden
 
-Flourishing Garden is a bio-inspired Obsidian theme for deep work, research, journaling, coding, and creative knowledge gardens. It uses calm botanical palettes, soft organic geometry, growth-ring heading hierarchy, specimen-card surfaces, and subtle mycelial interaction cues without leaning on decorative nature cliches.
+Flourishing Garden is a bio-inspired Obsidian theme. It uses calm botanical palettes, soft organic geometry, growth-ring heading hierarchy, specimen-card surfaces, and subtle mycelial interaction cues.
 
 ## Features
 
