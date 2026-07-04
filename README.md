@@ -2,7 +2,7 @@
 
 A calm Obsidian theme for reading, writing, research, and daily notes.
 
-It has a soft garden feel without being busy: warm light mode, quiet dark mode, readable serif notes, gentle green accents, clean code blocks, and simple rounded details.
+It has a soft garden feel: green light mode, green dark mode, readable serif notes, gentle green accents, clean code blocks, and simple rounded details.
 
 ## Install
 
