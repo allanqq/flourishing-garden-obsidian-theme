@@ -6,14 +6,18 @@ It has a soft garden feel: green light mode, green dark mode, readable serif not
 
 ## Install
 
-1. Download the latest release.
-2. Put `manifest.json`, `theme.css`, and `screenshot.png` in:
+Once the theme is in the Obsidian theme store:
+
+1. Open **Settings**.
+2. Go to **Appearance -> Themes**.
+3. Click **Manage**.
+4. Search for **Flourishing Garden**.
+5. Click **Install and use**.
+
+Until then, download the latest release and put `manifest.json`, `theme.css`, and `screenshot.png` in:
 
 ```txt
 .obsidian/themes/Flourishing Garden/
 ```
-
-3. In Obsidian, go to **Settings -> Appearance -> Themes**.
-4. Choose **Flourishing Garden**.
 
 For extra options, use the Style Settings plugin.
